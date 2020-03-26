@@ -1,33 +1,27 @@
-require 'encryption'
+require 'gibberish'
 
-class User
-    attr_accessor :keypair, :public_key, :private_key
-    def initialize()
-        @keypair = Encryption::Keypair.new(2048)
-        @public_key = @keypair.public_key
-        @private_key = @keypair.private_key
+class Encryption
+    def encrypt_data(data, passphrase)
+        return Gibberish::AES.new(passphrase).encrypt(data)
     end
 
-    def encrypt_data(data)
-        return @public_key.encrypt(data)
-    end
-
-    def decrypt_data(encrypted_data)
-        return @private_key.decrypt(encrypted_data)
+    def decrypt_data(encrypted_data, passphrase)
+        return Gibberish::AES.new(passphrase).decrypt(encrypted_data)
     end
 
     def write_to_file(encrypted_data)
-        # create new file
+        # create new file and write encrypted data
         file = File.open("save", "w+") { |f|
             f.write(encrypted_data)
         }
     end
+
+    def load_file()
+        return File.read("save")
+    end
 end
 
-user1 = User.new()
-p encrypted_data = user1.encrypt_data("some encrypted data")
-user1.write_to_file(encrypted_data)
-
-file1 = File.read("save")
-
-p user1.decrypt_data(file1)
+encryption = Encryption.new()
+encrypted_data = encryption.encrypt_data("Hello, World!", "Test123")
+encryption.write_to_file(encrypted_data)
+p decrypted_data = encryption.decrypt_data(encryption.load_file(), "Test123")
