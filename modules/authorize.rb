@@ -1,25 +1,31 @@
-module Authorize
+require_relative 'encryption.rb'
+require 'tty-prompt'
+
+class Authorize
+    attr_accessor :encryption, :prompt
     
+    def initialize()
+        @encryption = FileEncrypt.new()
+        @prompt = TTY::Prompt.new()
+    end
+
     def login()
-        logged_in = false
-        login_password = {
-            "Morgan" => "1234567890"
+        data = nil
+        menu_choice = prompt.select("What would you like to do?") { |menu|
+            menu.choice('New Session')
+            menu.choice('Load Session')
         }
-        
-        while(!logged_in)
-            puts "What is your login? (Case Sensitive)"
-            login = gets.chomp 
-            if login_password.has_key?(login)
-                puts "What is your password? (Case Sensitive)"
-            
-                password = gets.chomp
-            if login_password[login] == password 
-                puts "Welcome #{login}"
-                logged_in = true  
-            else 
-                puts "Password was incorrect please try again"
-                end 
-            end 
-        end  
-    end 
+
+        if(menu_choice == "New Session")
+            return :new
+        else
+            while(data == nil)
+                print("Please enter your password: ")
+                input = gets().chomp()
+                return if @encryption.decrypt_data(encryption.read_file, input)
+            end
+        end
+    end
 end
+
+# data = Authorize.new().login()
