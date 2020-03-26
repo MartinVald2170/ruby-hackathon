@@ -1,6 +1,17 @@
 # DSA TEST
 
-# answers inputted by user encrypted into a diff file
+# App Features 
+# User takes a Depression, Stress and Anxiety test to accumilate data to create a result dictated by the users inputted answers to the test
+# User will be recommended a pathway to help relieve the areas they score higher on 
+# User will be asked if they would want to see their answers to the questions 
+# answers inputted by user encrypted into a data file
+# User can log in to their data file to see the collection of their results 
+# Tasks Completed 
+# Martin -- Authorization code for encrypted file data
+# Morgan -- Being a king
+# Patricia -- Being a strong team member
+# Eve -- Being a great leader
+
 
 
 ## Tasks
