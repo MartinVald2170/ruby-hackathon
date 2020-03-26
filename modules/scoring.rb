@@ -16,15 +16,35 @@
             when "D" then
                 d_score += response[1].to_i
             when "A" then
-                d_score += response[1].to_i
+                a_score += response[1].to_i
             when "S" then
-                d_score += response[1].to_i
+                s_score += response[1].to_i
             end
         end
-        scores = [d_score, a_score, s_score]
-        overall = scores.reduce(0) {|sum, num| sum + num}
-        scores.push(overall)
+        scores = {
+            "Depression: " => d_score, 
+            "Anxiety: " => a_score, 
+            "Stress: " => s_score, 
+            "Overall: " => (overall = scores.reduce(0) {|sum, num| sum + num})
+        }
+        
         return scores
+    end
+
+    def output_to_screen(test_response, array)
+        # Output responses to screen in table
+        require "./tables.rb"
+        include Tables
+        output = []
+        for response in test_response do
+            output.push([ array[ (response[0]) ], $rating_scale[(response[1]) ]
+        end
+        display_table(output)
+
+        # Calculate scores
+        score = apply_score(test_response, array)
+        # Output under table
+        p scores
     end
 # end
 

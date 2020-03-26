@@ -11,7 +11,7 @@ module MultipleChoice
 
     require "./questions.rb"
     include Questions
-
+    
 
     def ask(test_option)
         puts prompt
@@ -19,7 +19,7 @@ module MultipleChoice
        return answer
     end
     
-     test = prompt.select("Please select a test", %w(DASS_21 DASS_42))
+    test = TTY::Prompt.new.select("Please select a test", %w(DASS_21 DASS_42))
     
     def do_test(test)
         case test
