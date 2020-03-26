@@ -6,14 +6,9 @@ include Tables
 include MultipleChoice
 
 class MainState
-    attr_accessor 
-        :test_taken
-        :nextone
-        :etc
-
     def initialize()
         if(Authorize.new().login() == :new)
-            # start here
+            do_test()
         else
             # display data from file
         end
@@ -22,4 +17,4 @@ class MainState
 end
 
 # Initialises program
-run = MainState.new
+run = MainState.new()

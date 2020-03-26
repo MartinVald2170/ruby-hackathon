@@ -9,7 +9,7 @@ module MultipleChoice
     require "tty-prompt"
     require "tty-box"
 
-    require "./questions.rb"
+    require "./modules/questions.rb"
     include Questions
     
 
@@ -19,34 +19,33 @@ module MultipleChoice
        return answer
     end
     
-    test = TTY::Prompt.new.select("Please select a test", %w(DASS_21 DASS_42))
-    
-    def do_test(test)
+    def do_test()
+        test = TTY::Prompt.new.select("Please select a test", %w(DASS_21 DASS_42))
         case test
             when "DASS_21" 
                 then ask_all_questions($dass21)
             when "DASS_42" 
                 then ask_all_questions($dass42)
         end
+    end 
 
+    def ask_question(number, array)
+        question = array[number][0]
+        prompt = TTY::Prompt.new
+        answer = prompt.select("\n #{question}", $rating_scale)
+        answer = $rating_scale.find_index(answer.chomp)
+        return [number, answer]
+    end
+    
+    def ask_all_questions(array)
         print "Please read each statement and select a response which indicates how much
         the statement applied to you over the past week"
-        def ask_question(number, array)
-            question = array[number][0]
-            prompt = TTY::Prompt.new
-            answer = prompt.select("\n #{question}", $rating_scale)
-            answer = $rating_scale.find_index(answer.chomp)
-            return [number, answer]
+        output = []
+        for each in array do
+            output.push (ask_question(array.find_index(each),array))
         end
-        
-        def ask_all_questions(array)
-            output = []
-            for each in array do
-                output.push (ask_question(array.find_index(each),array))
-            end
-            return output
-        end
-    end 
+        return output
+    end
 end
 
 
