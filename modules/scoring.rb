@@ -21,13 +21,13 @@
                 s_score += response[1].to_i
             end
         end
+        overall = d_score + a_score + s_score
         scores = {
             "Depression: " => d_score, 
             "Anxiety: " => a_score, 
             "Stress: " => s_score, 
-            "Overall: " => (overall = scores.reduce(0) {|sum, num| sum + num})
+            "Overall: " => overall
         }
-        
         return scores
     end
 
@@ -37,14 +37,14 @@
         include Tables
         output = []
         for response in test_response do
-            output.push([ array[ (response[0]) ], $rating_scale[(response[1]) ]
+            output.push([ array[ (response[0]) ], $rating_scale[(response[1])]])
         end
         display_table(output)
 
         # Calculate scores
         score = apply_score(test_response, array)
         # Output under table
-        p scores
+        
     end
 # end
 
