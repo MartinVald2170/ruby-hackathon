@@ -14,7 +14,7 @@ module Questions
     # where the 'index' is the questions number
 
     # DASS21 test
-    dass21 = [
+    $dass21 = [
         ["I found it hard to wind down","S"],
         ["I was aware of dryness of my mouth","A"],
         ["I couldn't seem to experience any positive feeling at all","D"],
@@ -39,7 +39,7 @@ module Questions
     ]
 
     # DASS Full 42 question test
-    dass42 = [
+    $dass42 = [
         ["I found myself getting upset by quite trivial things","S"],
         ["I was aware of dryness of my mouth","A"],
         ["I couldn't seem to experience any positive feeling at all","D"],
