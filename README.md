@@ -35,3 +35,5 @@ The DASS is a set of three self-report scales designed to measure the negative e
 | Morgan | Write a module to encrypt/decrypt contents of a file, merging the encryption with the authorization                         | Include decryption key value to be validated with Authorisation module token        |
 | Martin | Authorization code for encrypted file data, Readme file, Classes within the login  | Allowed to be used to decrypt the encripted date by accepting a phrase
 | Eve    | Creating the hashes to be used by the ttprompt code, Creating main code to merge everything together, Keeping track of scoring and print out a table showing the levels and scores of the test    | User will have the results of the test shown to them within a table 
+
+Created by Evelyn, Morgan, Patricia and Martin 
