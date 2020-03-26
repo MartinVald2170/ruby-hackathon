@@ -1,9 +1,12 @@
+
+
+
+def login 
 logged_in = false
 login_password = {
     "Morgan" => "1234567890"
 }
 
-}
 while !logged_in 
 puts "What is your login?
 (Case Sensitive)"
@@ -22,3 +25,5 @@ else
     end 
 end 
 end  
+end 
+login 

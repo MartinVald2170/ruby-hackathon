@@ -1,33 +1,8 @@
-# To use this file:
-# use:  require
-
-
-
-require "tty-prompt"
-require "tty-box"
-
-print "Please read each statement and select a response which indicates how much
-the statement applied to you over the past week"
-def ask_question(number, array)
-    question = array[number][0]
-    
-    prompt = TTY::Prompt.new
-    puts question
-    for option in rating_scale do
-        print TTY::Box.frame rating_scale[option]
-    end
-
-    answer = prompt.select("Rating scale?", %w(0 1 2 3))
-    return [number, answer]
-end
-
-
-
 module Questions
     # Rating Scale for multiple chopice options
     # Each response has a score value of it's index
     # example "Applied to me to a considerable degree, or a good part of time" at index 2 has a score value of 2
-    rating_scale= [
+    $rating_scale = [
         "Did not apply to me at all",
         "Applied to me to some degree, or some of the time",
         "Applied to me to a considerable degree, or a good part of time",
@@ -49,7 +24,7 @@ module Questions
         ["I experienced trembling (eg, in the hands)","A"],
         ["I felt that I was using a lot of nervous energy","S"],
         ["I was worried about situations in which I might panic and make a fool of myself","A"],
-        ["I felt that I had nothing to look forward to","D"],
+        ["I was worried about situations in which I might panic and make a fool of myself","A"],
         ["I found myself getting agitated","S"],
         ["I found it difficult to relax","S"],
         ["I felt down-hearted and blue","D"],
@@ -109,3 +84,13 @@ module Questions
         ["I found it difficult to work up the initiative to do things","D"]
     ]
 end
+
+# To use this file:
+# use:  require "questions.rb"  => requests the file
+# then  require 'Questions'     => loads module with data arrays
+
+
+
+
+
+
