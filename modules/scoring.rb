@@ -44,7 +44,7 @@
         # Calculate scores
         score = apply_score(test_response, array)
         # Output under table
-        
+        score.each do 
     end
 # end
 
